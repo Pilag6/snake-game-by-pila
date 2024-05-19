@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+::selection {
+    background-color: transparent;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("./assets/logo.webp");
+    background-size: contain;
+    background-position: bottom;
+}
+
+canvas {
+    border: 10px solid rgb(255, 255, 255);
+    background-color: #021936f3;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #00bfff, #00ff7f);
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 420px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: #021936f3;
+    color: white;
+    border-top: 10px solid rgb(255, 255, 255);
+    border-left: 10px solid rgb(255, 255, 255);
+    border-right: 10px solid rgb(255, 255, 255);
+
+    .score {
+        padding: 10px 0 10px 20px;
+        width: 150px;
+    }
+
+    .removeGrid {
+        width: 35px;
+        height: 35px;
+        padding: 0.5rem;
+        border: 1px solid white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        background-color: white;
+
+        &.active {
+            background-color: transparent;
+        }
+
+        &.active > img {
+            filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(330deg)
+                brightness(102%) contrast(101%);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            filter: invert(0%) sepia(0%) saturate(2%) hue-rotate(330deg)
+                brightness(102%) contrast(101%);
+            transition: all 0.3s ease;
+        }
+    }
+
+    .highScore {
+        padding: 10px 20px 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 5px;
+        width: 150px;
+    }
+}
+
+.countdown {
+    display: none;
+    font-size: 5rem;
+    color: #021936f3;
+    background: rgba(255, 255, 255, 0.91);
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 800;
+    text-align: center;
+}
+
+.trophy {
+    width: 30px;
+    height: 30px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 420px;
+
+    button {
+        width: 100%;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        border-bottom: 10px solid rgb(255, 255, 255);
+        color: white;
+        padding: 1rem 0;
+        background: #021936f3;
+    }
+
+    .start-btn {
+        border-left: 10px solid rgb(255, 255, 255);
+    }
+
+    .reset-btn {
+        border-left: 10px solid rgb(255, 255, 255);
+        border-right: 10px solid rgb(255, 255, 255);
+    }
+}
+
+.pressSpace {
+    font-size: 1.2rem;
+    color: white;
+    margin-top: 20px;
+
+    code {
+        background-color: #f0f0f0;
+        padding: 0 5px;
+        border-radius: 5px;
+        color: #021936f3;
+        font-family: monospace;
+        padding: 5px;
+    }
+}
+
+.game-over-modal,
+.high-score-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.gameOverModalContent,
+.highScoreModalContent {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+
+    button {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+.startModal {
+    background-image: url("./assets/logo.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    .startModalContent {
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+            margin-top: 20px;
+            padding: 20px 50px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+            outline: #f0f0f0 4px solid;
+            outline-offset: 10px;
+            border: 2px solid #f0f0f0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+.highScoreMessage,
+.finalScore {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.highNum {
+    color: #04b75d;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.finalNum {
+    color: #095977;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+#playerName {
+    padding: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #f0f0f0;
+    outline: none;
+}
+
+#submitNameButton {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: linear-gradient(45deg, #00bfff, #00ff7f);
+    border: none;
+    color: white;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+    }
+    #startModal {
+        background-size: cover;
+    }
+}
