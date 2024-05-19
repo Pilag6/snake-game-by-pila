@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const colors = require("colors");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -14,7 +16,7 @@ app.use(cors());
 
 const connectToMongoDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/snakeGame');
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log(":: Connected to MongoDB successfully!🐒 ".bgGreen.white);
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
