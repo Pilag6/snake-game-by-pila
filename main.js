@@ -247,7 +247,7 @@ function startCountdown() {
     let countdown = 5;
     hideStartModal();
     countdownElement.textContent = countdown;
-    countdownElement.style.display = "block";
+    countdownElement.style.display = "flex";
 
     const countdownInterval = setInterval(() => {
         countdown--;
