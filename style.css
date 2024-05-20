@@ -6,6 +6,7 @@
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
 }
 
 ::selection {
@@ -21,7 +22,7 @@ body {
     background-image: url("./assets/logo.webp");
     background-size: contain;
     background-position: bottom;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 canvas {
@@ -54,37 +55,7 @@ button {
 
     .score {
         padding: 10px 0 10px 20px;
-        width: 150px;
-    }
-
-    .removeGrid {
-        width: 35px;
-        height: 35px;
-        padding: 0.5rem;
-        border: 1px solid white;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.3s ease;
-        background-color: white;
-
-        &.active {
-            background-color: transparent;
-        }
-
-        &.active > img {
-            filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(330deg)
-                brightness(102%) contrast(101%);
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            filter: invert(0%) sepia(0%) saturate(2%) hue-rotate(330deg)
-                brightness(102%) contrast(101%);
-            transition: all 0.3s ease;
-        }
+        width: 100%;
     }
 
     .highScore {
@@ -93,7 +64,7 @@ button {
         align-items: center;
         justify-content: end;
         gap: 5px;
-        width: 150px;
+        width: 100%;
     }
 }
 
@@ -122,25 +93,64 @@ button {
     justify-content: center;
     align-items: center;
     width: 420px;
+    border-bottom: 10px solid rgb(255, 255, 255);
+    border-left: 10px solid rgb(255, 255, 255);
+    border-right: 10px solid rgb(255, 255, 255);
 
     button {
         width: 100%;
         font-size: 1.3rem;
         letter-spacing: 1px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        border-bottom: 10px solid rgb(255, 255, 255);
         color: white;
         padding: 1rem 0;
         background: #021936f3;
-    }
-
-    .start-btn {
-        border-left: 10px solid rgb(255, 255, 255);
-    }
-
-    .reset-btn {
-        border-left: 10px solid rgb(255, 255, 255);
         border-right: 10px solid rgb(255, 255, 255);
+    }
+
+    .bottom-btns {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        background: #021936f3;
+
+        .screenshot-btn {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .removeGrid {
+            width: 35px;
+            height: 35px;
+            padding: 0.4rem;
+            border: 1px solid white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            background-color: white;
+
+            &.active {
+                background-color: transparent;
+            }
+
+            &.active > img {
+                filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(330deg)
+                    brightness(102%) contrast(101%);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s ease;
+            }
+        }
     }
 }
 

@@ -2,7 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const startButton = document.getElementById("startButton");
-const resetButton = document.getElementById("resetButton");
+// const resetButton = document.getElementById("resetButton");
 const scoreElement = document.getElementById("score");
 const removeGrid = document.getElementById("removeGridBtn");
 const highScoreElement = document.getElementById("highScore");
@@ -166,6 +166,7 @@ document.addEventListener("keydown", (event) => {
             resetGame();
             break;
         case " ":
+            resetGame();
             startCountdown();
             break;
     }
@@ -220,7 +221,7 @@ function showGameOverModal() {
 
 function hideGameOverModal() {
     gameOverModal.style.display = "none";
-    resetGame();
+    // resetGame();
 }
 
 function showHighScoreModal() {
@@ -272,8 +273,11 @@ submitNameButton.addEventListener("click", async () => {
     showGameOverModal();
 });
 
-startButton.addEventListener("click", startCountdown);
-resetButton.addEventListener("click", resetGame);
+startButton.addEventListener("click", () => {
+    resetGame();
+    startCountdown();
+});
+// resetButton.addEventListener("click", resetGame);
 closeModalButton.addEventListener("click", hideGameOverModal);
 startGameButton.addEventListener("click", startCountdown);
 removeGrid.addEventListener("click", () => {
@@ -281,6 +285,19 @@ removeGrid.addEventListener("click", () => {
     removeGrid.classList.toggle("active");
     drawBoard();
 });
+
+const screenshotButton = document.getElementById("screenshotButton");
+
+screenshotButton.addEventListener("click", () => {
+    html2canvas(document.querySelector(".container")).then(canvas => {
+        // Create an anchor element to download the screenshot
+        let link = document.createElement("a");
+        link.download = "snakeScreenshot.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+});
+
 
 fetchHighScore();
 resetGame(); // Initial reset to draw the initial state

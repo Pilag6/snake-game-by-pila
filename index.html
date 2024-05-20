@@ -17,19 +17,38 @@
              -->
             <section class="top">
                 <div id="score" class="score">00</div>
-                <div title="Change the Skin" id="removeGridBtn" class="removeGrid"><img src="./assets/removeGrid.png" alt=""></div>
+
                 <div id="highScore" class="highScore">High Score: 0</div>
             </section>
 
             <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div id="countdown" class="countdown">5</div> <!-- Countdown display -->
+            <div id="countdown" class="countdown">5</div>
+            <!-- Countdown display -->
 
             <section class="bottom">
                 <button id="startButton" class="start-btn">START</button>
-                <button id="resetButton" class="reset-btn">RESET</button>
+                <div class="bottom-btns">
+                    <img
+                        title="Take a Screenshot"
+                        id="screenshotButton"
+                        class="screenshot-btn"
+                        src="./assets/screenshot.png"
+                    />
+
+                    <div
+                        class="removeGrid"
+                        title="Change the Skin"
+                        id="removeGridBtn"
+                    >
+                        <img src="./assets/removeGrid.png" alt="" />
+                    </div>
+                </div>
+                <!-- <button id="resetButton" class="reset-btn">RESET</button> -->
             </section>
 
-            <p class="pressSpace">Press <code>space</code> to restart the game</p>
+            <p class="pressSpace">
+                Press <code>space</code> to restart the game
+            </p>
 
             <!-- MODALS -->
 
@@ -78,6 +97,8 @@
                 </div>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
 
         <script src="main.js"></script>
     </body>
