@@ -36,6 +36,7 @@ async function fetchHighScore() {
     try {
         const response = await fetch(`${"https://snake-game-by-pila.onrender.com"}/highscore`);
         const data = await response.json();
+        console.log("High score fetched:", data);
         if (data) {
             highScore = data.score;
             highScoreName = data.name;
