@@ -34,7 +34,7 @@ let isGridVisible = true; // Track the grid visibility
 // Fetch the high score from the server
 async function fetchHighScore() {
     try {
-        const response = await fetch("http://localhost:3000/highscore");
+        const response = await fetch(`${"https://snake-game-by-pila.onrender.com"}/highscore`);
         const data = await response.json();
         if (data) {
             highScore = data.score;
@@ -49,7 +49,7 @@ async function fetchHighScore() {
 // Save the high score to the server
 async function saveHighScore(name, score) {
     try {
-        const response = await fetch("http://localhost:3000/highscore", {
+        const response = await fetch(`${"https://snake-game-by-pila.onrender.com"}/highscore`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
