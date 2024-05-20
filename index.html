@@ -1,105 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Snake Game by Pila</title>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="shortcut icon" href="./favicon.webp" type="image/x-icon" />
-    </head>
-    <body>
-        <div class="container">
-            <!-- 
-                The game is divided into 3 sections:
-                - Top: Contains the score and high score
-                - Canvas: Contains the game
-                - Bottom: Contains the start and reset buttons
-             -->
-            <section class="top">
-                <div id="score" class="score">00</div>
-
-                <div id="highScore" class="highScore">High Score: 0</div>
-            </section>
-
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div id="countdown" class="countdown">5</div>
-            <!-- Countdown display -->
-
-            <section class="bottom">
-                <button id="startButton" class="start-btn">START</button>
-                <div class="bottom-btns">
-                    <img
-                        title="Take a Screenshot"
-                        id="screenshotButton"
-                        class="screenshot-btn"
-                        src="./assets/screenshot.png"
-                    />
-
-                    <div
-                        class="removeGrid"
-                        title="Change the Skin"
-                        id="removeGridBtn"
-                    >
-                        <img src="./assets/removeGrid.png" alt="" />
-                    </div>
-                </div>
-                <!-- <button id="resetButton" class="reset-btn">RESET</button> -->
-            </section>
-
-            <p class="pressSpace">
-                Press <code>space</code> to restart the game
-            </p>
-
-            <!-- MODALS -->
-
-            <!-- 
-                Game Over Modal
-                - Displayed when the game is over
-                - Shows the final score
-                - Has a close button
-             -->
-            <div id="gameOverModal" class="game-over-modal">
-                <div id="gameOverModalContent" class="gameOverModalContent">
-                    <h1>Game Over</h1>
-                    <p id="finalScore" class="finalScore"></p>
-                    <button id="closeModalButton">Close</button>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game by Pila</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./favicon.webp" type="image/x-icon" />
+</head>
+<body>
+    <div class="container">
+        <section class="top">
+            <div id="score" class="score">00</div>
+            <div id="highScore" class="highScore">High Score: 0</div>
+        </section>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="countdown" class="countdown">5</div>
+        <section class="bottom">
+            <button id="startButton" class="start-btn">START</button>
+            <div class="bottom-btns">
+                <img
+                    title="Take a Screenshot"
+                    id="screenshotButton"
+                    class="screenshot-btn"
+                    src="./assets/screenshot.png"
+                />
+                <div
+                    class="removeGrid"
+                    title="Change the Skin"
+                    id="removeGridBtn"
+                >
+                    <img src="./assets/removeGrid.png" alt="" />
                 </div>
             </div>
+        </section>
+        <!-- <p class="pressSpace">
+            Press <code>space</code> to restart the game
+        </p> -->
 
-            <!-- 
-                High Score Modal
-                - Displayed when the player gets a new high score
-                - Shows a message that the player got a new high score
-                - Has an input field for the player to enter their name
-                - Has a submit button
-             -->
-            <div id="highScoreModal" class="high-score-modal">
-                <div id="highScoreModalContent" class="highScoreModalContent">
-                    <h1>New High Score!</h1>
-                    <p id="highScoreMessage" class="highScoreMessage"></p>
-                    <input
-                        type="text"
-                        id="playerName"
-                        placeholder="Enter your name"
-                    />
-                    <button id="submitNameButton">Submit</button>
-                </div>
+        <!-- Arrow control buttons for small screens -->
+        <div class="arrow-controls">
+            <img src="./assets/chevron-left.svg" id="arrowUp" class="arrow-btn"></img>
+            <div class="arrow-horizontal">
+                <img src="./assets/chevron-left.svg" id="arrowLeft" class="arrow-btn"></img>
+                <img src="./assets/chevron-right.svg" id="arrowRight" class="arrow-btn"></img>
             </div>
-
-            <!-- 
-                Start Modal
-                - Displayed when the page is loaded
-                - Has a start game button
-             -->
-            <div id="startModal" class="startModal">
-                <div id="startModalContent" class="startModalContent">
-                    <button id="startGameButton">Start Game</button>
-                </div>
-            </div>
+            <img src="./assets/chevron-left.svg" id="arrowDown" class="arrow-btn"></img>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
-
-        <script src="main.js"></script>
-    </body>
+        <div id="gameOverModal" class="game-over-modal">
+            <div id="gameOverModalContent" class="gameOverModalContent">
+                <h1>Game Over</h1>
+                <p id="finalScore" class="finalScore"></p>
+                <button id="closeModalButton">Close</button>
+            </div>
+        </div>
+        <div id="highScoreModal" class="high-score-modal">
+            <div id="highScoreModalContent" class="highScoreModalContent">
+                <h1>New High Score!</h1>
+                <p id="highScoreMessage" class="highScoreMessage"></p>
+                <input type="text" id="playerName" placeholder="Enter your name" />
+                <button id="submitNameButton">Submit</button>
+            </div>
+        </div>
+        <div id="startModal" class="startModal">
+            <div id="startModalContent" class="startModalContent">
+                <button id="startGameButton">Start Game</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script src="main.js"></script>
+</body>
 </html>

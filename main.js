@@ -17,6 +17,11 @@ const startGameButton = document.getElementById("startGameButton");
 const countdownElement = document.getElementById("countdown");
 const screenshotButton = document.getElementById("screenshotButton");
 
+const arrowUpButton = document.getElementById("arrowUp");
+const arrowDownButton = document.getElementById("arrowDown");
+const arrowLeftButton = document.getElementById("arrowLeft");
+const arrowRightButton = document.getElementById("arrowRight");
+
 const gridSize = 20; // Size of each cell in the grid
 const canvasSize = 400; // Size of the canvas
 const numCells = canvasSize / gridSize; // Number of cells per row/column
@@ -172,6 +177,23 @@ document.addEventListener("keydown", (event) => {
             startCountdown();
             break;
     }
+});
+
+// Event listeners for arrow buttons
+arrowUpButton.addEventListener("click", () => {
+    if (direction.y === 0) direction = { x: 0, y: -1 };
+});
+
+arrowDownButton.addEventListener("click", () => {
+    if (direction.y === 0) direction = { x: 0, y: 1 };
+});
+
+arrowLeftButton.addEventListener("click", () => {
+    if (direction.x === 0) direction = { x: -1, y: 0 };
+});
+
+arrowRightButton.addEventListener("click", () => {
+    if (direction.x === 0) direction = { x: 1, y: 0 };
 });
 
 function gameLoop() {

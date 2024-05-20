@@ -80,7 +80,7 @@ button {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 600; 
+    z-index: 600;
     justify-content: center;
     align-items: center;
 }
@@ -271,11 +271,50 @@ button {
     margin-top: 10px;
 }
 
+.arrow-controls {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+    height: 200px;
+    background: #fffffff3;
+    border: 10px solid rgb(255, 255, 255);
+
+}
+
+.arrow-horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.arrow-btn {
+    width: 50px;
+    height: 50px;
+    padding: 5px ;
+    outline: none;
+    cursor: pointer;
+    background: #021936f3;
+}
+
+#arrowUp {
+    transform: rotate(90deg);
+}
+#arrowDown {
+    transform: rotate(-90deg);
+}
+
 @media (max-width: 768px) {
     body {
         background-size: cover;
     }
     #startModal {
         background-size: cover;
+    }
+
+    .arrow-controls {
+        display: flex;
     }
 }
