@@ -2,7 +2,6 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 const startButton = document.getElementById("startButton");
-// const resetButton = document.getElementById("resetButton");
 const scoreElement = document.getElementById("score");
 const removeGrid = document.getElementById("removeGridBtn");
 const highScoreElement = document.getElementById("highScore");
@@ -16,6 +15,7 @@ const submitNameButton = document.getElementById("submitNameButton");
 const startModal = document.getElementById("startModal");
 const startGameButton = document.getElementById("startGameButton");
 const countdownElement = document.getElementById("countdown");
+const screenshotButton = document.getElementById("screenshotButton");
 
 const gridSize = 20; // Size of each cell in the grid
 const canvasSize = 400; // Size of the canvas
@@ -36,7 +36,6 @@ async function fetchHighScore() {
     try {
         const response = await fetch(`${"https://snake-game-by-pila.onrender.com"}/highscore`);
         const data = await response.json();
-        console.log("High score fetched:", data);
         if (data) {
             highScore = data.score;
             highScoreName = data.name;
@@ -78,7 +77,16 @@ function drawCell(x, y, color) {
 }
 
 function drawSnake() {
-    snake.forEach((segment) => drawCell(segment.x, segment.y, "#4ACF7F"));
+    snake.forEach((segment) => {
+        drawCell(segment.x, segment.y, "#4ACF7F"); // Draw the snake segment
+        drawBorder(segment.x, segment.y, "#021936f3"); // Draw the border
+    });
+}
+
+function drawBorder(x, y, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1; // Border width
+    ctx.strokeRect(x * gridSize, y * gridSize, gridSize, gridSize);
 }
 
 function drawFood() {
@@ -120,10 +128,7 @@ function moveSnake() {
         head.y < 0 ||
         head.x >= numCells ||
         head.y >= numCells ||
-        snake.some(
-            (segment, index) =>
-                index !== 0 && segment.x === head.x && segment.y === head.y
-        )
+        snake.some((segment, index) => index !== 0 && segment.x === head.x && segment.y === head.y)
     ) {
         endGame();
         return;
@@ -161,9 +166,6 @@ document.addEventListener("keydown", (event) => {
             break;
         case "ArrowRight":
             if (direction.x === 0) direction = { x: 1, y: 0 };
-            break;
-        case "Enter":
-            resetGame();
             break;
         case " ":
             resetGame();
@@ -277,27 +279,27 @@ startButton.addEventListener("click", () => {
     resetGame();
     startCountdown();
 });
-// resetButton.addEventListener("click", resetGame);
+
 closeModalButton.addEventListener("click", hideGameOverModal);
-startGameButton.addEventListener("click", startCountdown);
+startGameButton.addEventListener("click", () => {
+    resetGame();
+    startCountdown();
+});
+
 removeGrid.addEventListener("click", () => {
     isGridVisible = !isGridVisible;
     removeGrid.classList.toggle("active");
     drawBoard();
 });
 
-const screenshotButton = document.getElementById("screenshotButton");
-
 screenshotButton.addEventListener("click", () => {
     html2canvas(document.querySelector(".container")).then(canvas => {
-        // Create an anchor element to download the screenshot
         let link = document.createElement("a");
         link.download = "snakeScreenshot.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
     });
 });
-
 
 fetchHighScore();
 resetGame(); // Initial reset to draw the initial state
