@@ -278,8 +278,7 @@ button {
     justify-content: center;
     width: 420px;
     height: 200px;
-    background: #fffffff3;
-    border: 10px solid rgb(255, 255, 255);
+    background: #ffffff;
 
 }
 
@@ -309,6 +308,10 @@ button {
 @media (max-width: 768px) {
     body {
         background-size: cover;
+    }
+
+    .container {
+        justify-content: start;
     }
     #startModal {
         background-size: cover;
